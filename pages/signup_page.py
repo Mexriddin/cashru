@@ -1,6 +1,5 @@
 from pages.base_page import BasePage
 from data.links import Links
-from helpers.generate import user
 
 
 class SignupPage(BasePage):
@@ -42,7 +41,7 @@ class SignupPage(BasePage):
     def click_signup_button(self):
         self.__signup_shadow(self._SUBMIT_BTN).click()
 
-    def signup_negative_by_field(self, field_name, value=None):
+    def signup_negative_by_field(self, user, field_name, value=None):
         self.enter_username(value) if field_name == "username" else self.enter_username(user.username)
         self.enter_email(value) if field_name == "email" else self.enter_email(user.email)
         self.enter_password(value) if field_name == "password" else self.enter_password(user.password)
@@ -53,15 +52,15 @@ class SignupPage(BasePage):
             self.click_signup_button()
 
 
-    def check_msg(self, filed, exp_msg):
+    def check_msg(self, filed_name, exp_msg):
         msg_locator = ""
-        if filed == "username":
+        if filed_name == "username":
             msg_locator = self._MSG_USERNAME
-        elif filed == "email":
+        elif filed_name == "email":
             msg_locator = self._MSG_EMAIL
-        elif filed == "password":
+        elif filed_name == "password":
             msg_locator = self._MSG_PASSWORD
-        elif filed == "referral":
+        elif filed_name == "referral":
             msg_locator = self._MSG_REFERRAL
         actual_msg = self.__signup_shadow(msg_locator).text_content().strip()
         assert actual_msg == exp_msg, f"Actual msg:{actual_msg}\nExpected:{exp_msg}"

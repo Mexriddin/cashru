@@ -1,2 +1,2 @@
-pytest_plugins = ['fixtures.page']
+pytest_plugins = ['fixtures.page', 'fixtures.user']
 

@@ -1,17 +1,9 @@
 from typing import Optional
-from data.credentials import User
 from faker import Faker
 import random
 import string
 
 fake = Faker()
-
-
-user = User(
-    username=''.join(random.choice(string.ascii_lowercase)) + ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(10)),
-    email=fake.email(),
-    password=fake.password(length=8, special_chars=True, upper_case=True, lower_case=True, digits=True),
-    referral=''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(random.randint(4, 8))))
 
 
 def generate_negative_username(min_length: Optional[bool] = None, max_length: Optional[bool] = None,
@@ -21,7 +13,7 @@ def generate_negative_username(min_length: Optional[bool] = None, max_length: Op
     if min_length:
         username = ''.join(random.choice(string.ascii_lowercase) for _ in range(5))
     elif max_length:
-        username = ''.join(random.choice(string.ascii_lowercase) for _ in range(34))
+        username = ''.join(random.choice(string.ascii_lowercase) for _ in range(33))
     elif start_digit:
         username = str(random.choice(string.digits)) + ''.join(random.choice(string.ascii_lowercase) for _ in range(5))
     elif invalid_chars:
@@ -34,9 +26,9 @@ def generate_negative_email(without_local: Optional[bool] = None, without_domain
     expect_msg = "Формат e-mail: username@test.ru"
     email = ""
     if without_local:
-        email = fake.email().split("@")[1]
+        email = "@" + fake.email().split("@")[1]
     elif without_domain:
-        email = fake.email().split("@")[0]
+        email = fake.email().split("@")[0] + "@"
     elif without_delimiter:
         email = fake.email().replace("@", "")
     return email, expect_msg
@@ -47,10 +39,12 @@ def generate_negative_password(min_length: Optional[bool] = None, max_length: Op
     expect_msg = "Пароль должен содержать от 8 до 64 символов, включая заглавные буквы и цифры"
     password = ""
     if min_length:
-        password = fake.password(length=random.randint(4, 7), special_chars=True, upper_case=True, lower_case=True, digits=True)
+        password = fake.password(length=7, special_chars=True, upper_case=True, lower_case=True,
+                                 digits=True)
         expect_msg = "Пароль должен содержать минимум 8 символов"
     elif max_length:
-        password = fake.password(length=random.randint(64, 65), special_chars=True, upper_case=True, lower_case=True, digits=True)
+        password = fake.password(length=65, special_chars=True, upper_case=True, lower_case=True,
+                                 digits=True)
     elif only_digits:
         password = "".join(random.choice(string.digits) for _ in range(8))
     elif only_alpha:
@@ -64,5 +58,7 @@ def generate_negative_referral(min_length: Optional[bool] = None, max_length: Op
     if min_length:
         referral = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(3))
     elif max_length:
-        referral = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(10))
+        referral = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(9))
     return referral, expect_msg
+
+
