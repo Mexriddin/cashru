@@ -6,6 +6,9 @@ on:
 #      - main
   workflow_dispatch:
 
+env:
+  STAGE: prod
+
 jobs:
   run_tests:
     runs-on: ubuntu-latest
