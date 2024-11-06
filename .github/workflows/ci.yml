@@ -16,11 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Checkout (copy) gh-pages repository to GitHub runner
-        uses: actions/checkout@v2
-        with:
-          ref: gh-pages
-          path: ./.github/gh-pages
+#      - name: Checkout (copy) gh-pages repository to GitHub runner
+#        uses: actions/checkout@v2
+#        with:
+#          ref: gh-pages
+#          path: ./.github/gh-pages
 
       - name: Set up Python
         uses: actions/setup-python@v2
