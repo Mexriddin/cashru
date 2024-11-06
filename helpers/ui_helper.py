@@ -1,4 +1,5 @@
 from playwright.sync_api import Page, expect
+import allure
 
 
 class UiHelper:
@@ -7,7 +8,8 @@ class UiHelper:
         self.expect = expect
 
     def open(self):
-        self.page.goto(self._PAGE_URL, wait_until="domcontentloaded", timeout=50000)
+        with allure.step(f"Open page with url: {self._PAGE_URL}"):
+            self.page.goto(self._PAGE_URL, wait_until="domcontentloaded", timeout=50000)
 
     def shadow_root(self, shadow_host_loc):
         shadow_host = self.page.wait_for_selector(f"css={shadow_host_loc}", state="visible", timeout=100000)

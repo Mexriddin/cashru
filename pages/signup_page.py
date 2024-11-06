@@ -1,5 +1,6 @@
 from pages.base_page import BasePage
 from data.links import Links
+import allure
 
 
 class SignupPage(BasePage):
@@ -23,21 +24,27 @@ class SignupPage(BasePage):
         element = self.shadow_root(self._SIGNUP_SHADOW).query_selector(f"css={element_locator}")
         return element
 
+    @allure.step("Fill username")
     def enter_username(self, username: str):
         self.__signup_shadow(self._USER_NAME).fill(username)
 
+    @allure.step("Fill email")
     def enter_email(self, email: str):
         self.__signup_shadow(self._EMAIL).fill(email)
 
+    @allure.step("Fill password")
     def enter_password(self, password: str):
         self.__signup_shadow(self._PASSWORD).fill(password)
 
+    @allure.step("Fill referral")
     def enter_referral(self, referral: str):
         self.__signup_shadow(self._REFERRAL).fill(referral)
 
+    @allure.step("Checked user agreement")
     def check_user_agreement(self):
         return self.__signup_shadow(self._USER_AGREEMENT).click()
 
+    @allure.step("Click submit button")
     def click_signup_button(self):
         self.__signup_shadow(self._SUBMIT_BTN).click()
 
@@ -51,7 +58,7 @@ class SignupPage(BasePage):
         if field_name != "referral":
             self.click_signup_button()
 
-
+    @allure.step("Check message content")
     def check_msg(self, filed_name, exp_msg):
         msg_locator = ""
         if filed_name == "username":
@@ -65,5 +72,6 @@ class SignupPage(BasePage):
         actual_msg = self.__signup_shadow(msg_locator).text_content().strip()
         assert actual_msg == exp_msg, f"Actual msg:{actual_msg}\nExpected:{exp_msg}"
 
+    @allure.step("Check status user-agreement")
     def check_status_user_agreement(self):
         assert "v-input--is-label-active" not in self.__signup_shadow(self._STATUS_USER_AGREEMENT).get_attribute("class")

@@ -1,5 +1,6 @@
 from datetime import datetime
 import pytest
+import allure
 from playwright.sync_api import Page, BrowserContext, Browser
 
 
@@ -29,3 +30,8 @@ def take_screenshot(page, nodeid: str) -> None:
     filename = f"{nodeid}_{now}.png".replace("/", "_").replace("::", "__")
     file_path = f"screenshots/{filename}"
     page.screenshot(path=file_path)
+    allure.attach.file(
+        file_path,
+        name=filename,
+        attachment_type=allure.attachment_type.PNG
+    )
