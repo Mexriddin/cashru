@@ -25,6 +25,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get install -y docker-compose
+
       - name: Run tests via Docker-compose
         run: docker-compose up --exit-code-from tests || true
 
