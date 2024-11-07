@@ -22,6 +22,7 @@ on:
         options:
           - chromium
           - firefox
+          - all
 
 env:
   STAGE: ${{ github.event.inputs.environment }}
@@ -29,6 +30,11 @@ env:
 jobs:
   run_tests:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser: [ chromium, firefox ]
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v5
@@ -54,7 +60,12 @@ jobs:
           tar -zxvf allure-2.26.0.tgz -C /opt/  
           sudo ln -s /opt/allure-2.26.0/bin/allure /usr/bin/allure
 
-      - name: Run tests
+      - name: Run tests in all browsers
+        if: ${{ github.event.inputs.browser == 'all' }}
+        run: pytest --browser=${{ matrix.browser }} -sv --alluredir=allure-results -n=4 || true
+
+      - name: Run tests in choice browser
+        if: ${{ github.event.inputs.browser != 'all' }}
         run: pytest --browser=${{ github.event.inputs.browser }} -sv --alluredir=allure-results -n=4 || true
 
       - name: Copy history from gh-pages to allure-results
