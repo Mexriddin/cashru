@@ -74,4 +74,4 @@ class SignupPage(BasePage):
 
     @allure.step("Check status user-agreement")
     def check_status_user_agreement(self):
-        assert "v-input--is-label-active" not in self.__signup_shadow(self._STATUS_USER_AGREEMENT).get_attribute("class")
+        assert "v-input--is-label-active" in self.__signup_shadow(self._STATUS_USER_AGREEMENT).get_attribute("class")
