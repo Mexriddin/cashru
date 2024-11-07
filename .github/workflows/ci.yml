@@ -53,10 +53,15 @@ jobs:
           pip install -r requirements.txt
           playwright install
 
-      - name: Run tests
+      - name: Run tests in all browsers
+        if: ${{ github.event.inputs.browser == 'all' }}
         run: |
-          pytest --browser=${{ github.event.inputs.browser == 'all' ? matrix.browser : github.event.inputs.browser }} \
-          -sv --alluredir=allure-results -n=4 || true
+          pytest --browser=${{ matrix.browser }} -sv --alluredir=allure-results -n=4 || true
+
+      - name: Run tests in selected browser
+        if: ${{ github.event.inputs.browser != 'all' }}
+        run: |
+          pytest --browser=${{ github.event.inputs.browser }} -sv --alluredir=allure-results -n=4 || true
 
       - name: Copy history from gh-pages to allure-results
         run: |
