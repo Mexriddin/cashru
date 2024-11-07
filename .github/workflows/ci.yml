@@ -87,7 +87,7 @@ jobs:
 #          sudo cp -R allure-report/history/* ./.github/gh-pages/history/
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: allure-report
           path: allure-report
@@ -97,12 +97,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: allure-report
-
-      - name: Copy allure in path
-        run: sudo cp -R allure-report/* /home/runner/work/cashru/cashru/allure-report/
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
