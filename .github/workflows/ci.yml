@@ -65,6 +65,7 @@ jobs:
 #          publish_dir: allure-history
       - name: Install Allure
         run: |
+          apt-get update && apt-get install -y openjdk-17-jre openjdk-17-jdk
           wget https://github.com/allure-framework/allure2/releases/download/2.26.0/allure-2.26.0.tgz 
           tar -zxvf allure-2.26.0.tgz -C /opt/ 
           sudo ln -s /opt/allure-2.26.0/bin/allure /usr/bin/allure
