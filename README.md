@@ -116,7 +116,7 @@ docker-compose up report
 </p>
 
 <h2 id="allure_report"><img width="3%" title="Allure Report" src="media/logo/AllureReports.png"> <a href="https://mexriddin.github.io/cashru/">Пример Allure-отчета</a></h2>
-### Обзор
+**Обзор**
 
 <p align="center">
 <img title="Allure Overview" src="media/screens/allure_report_dash.png">
