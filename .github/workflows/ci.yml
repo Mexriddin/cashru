@@ -79,6 +79,7 @@ jobs:
     needs: run_tests
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Install Allure
         run: |
           apt-get update && apt-get install -y openjdk-17-jre openjdk-17-jdk wget 
