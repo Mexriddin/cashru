@@ -98,7 +98,6 @@ pytest -n=4                         - запуск параллельно в 4 �
 pytest -v                           - запуск с дополнительным информациям
 pytest --alluredir=allure-results   - c генирированием Allure отчета
 ```
-
 ### Запуск тестов с помощью Docker
 Запускаем тесты в докер контейнере
 ```sh
@@ -110,7 +109,7 @@ docker-compose up report
 ```
 
 <h2 id="github-action"><img width="3%" title="GitHub Action" src="media/logo/action.png"> <a href="https://github.com/Mexriddin/cashru/actions/workflows/ci.yml"> Сборка в GitHub Action</a></h2>
-**С возможностью выбора окружение и браузер**
+<h4>С возможностью выбора окружение и браузер</h4>
 <p align="center">
 <img title="GitHub Action" src="media/screens/github_actions.png">
 </p>
