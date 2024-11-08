@@ -1,0 +1,11 @@
+services:
+  run_tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/workspace
+    working_dir: /usr/workspace
+    environment:
+      - STAGE=prod
+    command: /bin/sh -c "pytest -sv --alluredir=allure-results"
