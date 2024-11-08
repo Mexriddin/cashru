@@ -64,11 +64,6 @@ jobs:
           tar -zxvf allure-2.26.0.tgz -C /opt/  
           sudo ln -s /opt/allure-2.26.0/bin/allure /usr/bin/allure
 
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: allure-results
-
       - name: Generate Allure report
         run: allure generate allure-results --clean -o allure-report
 
