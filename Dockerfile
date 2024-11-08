@@ -8,4 +8,4 @@ RUN apt-get update && apt-get install -y openjdk-17-jre openjdk-17-jdk wget && \
 WORKDIR /usr/workspace
 COPY ./requirements.txt /usr/workspace
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir -r requirements.txt
