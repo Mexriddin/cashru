@@ -79,8 +79,9 @@
 
 
 <h2 id="test_run">Инструкция запуск тестов</h2>
-Запуск тестов можно осуществлять локально или с помощью [GitHub Actions](https://github.com/Mexriddin/cashru/actions/workflows/ci.yml) с формированием Allure-отчета прогона.
+Запуск тестов можно осуществлять локально или с помощью <a href="https://github.com/Mexriddin/cashru/actions/workflows/ci.yml"> GitHub Actions</a> с формированием Allure-отчета прогона.
 
+**С возможностью выбора окружение и браузер**
 ### Локальный запуск тестов
 
 * в .env определить параметры конфигурации:
@@ -111,18 +112,18 @@ docker-compose up report
 <h2 id="github-action"><img width="3%" title="GitHub Action" src="media/logo/action.png"> <a href="https://github.com/Mexriddin/cashru/actions/workflows/ci.yml"> Сборка в GitHub Action</a></h2>
 **С возможностью выбора окружение и браузер**
 <p align="center">
-<img title="GitHub Action" src="media/screenshots/github_actions.png">
+<img title="GitHub Action" src="media/screens/github_actions.png">
 </p>
 
 <h2 id="allure_report"><img width="3%" title="Allure Report" src="media/logo/AllureReports.png"> <a href="https://mexriddin.github.io/cashru/">Пример Allure-отчета</a></h2>
 ### Обзор
 
 <p align="center">
-<img title="Allure Overview" src="media/screenshots/allure_report_dash.png">
+<img title="Allure Overview" src="media/screens/allure_report_dash.png">
 </p>
 
 ### Результат выполнения теста
 
 <p align="center">
-<img title="Test Results in Alure" src="media/screenshots/allure_report_result.png">
+<img title="Test Results in Alure" src="media/screens/allure_report_result.png">
 </p>
