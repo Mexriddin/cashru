@@ -86,20 +86,20 @@ jobs:
 #        run: |
 #          sudo cp -R allure-report/history/* ./.github/gh-pages/history/
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: allure-report
-          path: allure-report
+#      - name: Upload artifact
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: allure-report
+#          path: allure-report
 
-  deploy:
-    needs: generate_allure
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: allure-report
+#  deploy:
+#    needs: generate_allure
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Download artifact
+#        uses: actions/download-artifact@v3
+#        with:
+#          name: allure-report
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
