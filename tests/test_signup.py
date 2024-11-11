@@ -52,7 +52,7 @@ class TestSignupNegative(BaseTest):
     @pytest.mark.parametrize("referral,exp_msg", [generate_negative_referral(min_length=True),
                                                   generate_negative_referral(max_length=True)],
                              ids=["min_length", "max_length"])
-    @allure.title("Signup tests with invalid referral")
+    # @allure.title("Signup tests with invalid referral")
     def test_signup_negative_referral_field(self, request, user, referral, exp_msg):
         test_id = request.node.name[request.node.name.index("-") + 1:-1]
         allure.dynamic.title(f"Signup with invalid referral({test_id})")
