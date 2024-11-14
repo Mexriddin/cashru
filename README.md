@@ -88,6 +88,7 @@
 
     - `STAGE`*(prod,dev)*
 
+
 ```sh
   pytest .\tests\ 
 ```
@@ -97,7 +98,7 @@ pytest --browser=chromium           - запуск с выбором в како
 pytest -n=4                         - запуск параллельно в 4 потоках
 pytest -v                           - запуск с дополнительным информациям
 pytest --alluredir=allure-results   - c генирированием Allure отчета
-```
+``` 
 ### Запуск тестов с помощью Docker
 Запускаем тесты в докер контейнере
 ```sh

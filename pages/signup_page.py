@@ -19,6 +19,7 @@ class SignupPage(BasePage):
     _MSG_PASSWORD = "div[data-wi='password'] div[data-wi='error'] span"
     _MSG_REFERRAL = "div[data-wi='referral'] div[data-wi='message'] span"
     _STATUS_USER_AGREEMENT = "div[data-wi='user-agreement']>div"
+    _CAPTCHA = '//iframe[contains(@src, "captcha") and @scrolling="no"]'
 
     def __signup_shadow(self, element_locator):
         element = self.shadow_root(self._SIGNUP_SHADOW).query_selector(f"css={element_locator}")
@@ -58,6 +59,19 @@ class SignupPage(BasePage):
         if field_name != "referral":
             self.click_signup_button()
 
+    def signup_positive(self, user, without_referral: bool = None):
+        self.enter_username(user.username)
+        self.enter_email(user.email)
+        self.enter_password(user.password)
+        if without_referral is not True:
+            self.enter_referral(user.referral)
+        self.check_user_agreement()
+        self.click_signup_button()
+
+    @allure.step("Checking captcha dropout")
+    def check_captcha(self):
+        self.expect(self.page.locator(self._CAPTCHA)).to_be_visible(timeout=30000)
+
     @allure.step("Check message content")
     def check_msg(self, filed_name, exp_msg):
         msg_locator = ""
@@ -74,4 +88,5 @@ class SignupPage(BasePage):
 
     @allure.step("Check status user-agreement")
     def check_status_user_agreement(self):
-        assert "v-input--is-label-active" not in self.__signup_shadow(self._STATUS_USER_AGREEMENT).get_attribute("class")
+        assert "v-input--is-label-active" not in self.__signup_shadow(self._STATUS_USER_AGREEMENT).get_attribute(
+            "class")

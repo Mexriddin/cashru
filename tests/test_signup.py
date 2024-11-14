@@ -6,6 +6,20 @@ from helpers.generator import (generate_negative_username, generate_negative_ema
 
 
 @allure.parent_suite("Registrations tests area")
+@allure.suite("Positive tests for Registrations")
+class TestSignupPositive(BaseTest):
+    def test_signup_with_valid_data_with_referral(self, user):
+        self.signup_page.open()
+        self.signup_page.signup_positive(user)
+        self.signup_page.check_captcha()
+
+    def test_signup_with_valid_data_without_referral(self, user):
+        self.signup_page.open()
+        self.signup_page.signup_positive(user, without_referral=True)
+        self.signup_page.check_captcha()
+
+
+@allure.parent_suite("Registrations tests area")
 @allure.suite("Negative tests for Registrations")
 class TestSignupNegative(BaseTest):
     @pytest.mark.parametrize("username,exp_msg", [("", "Поле не заполнено"),
